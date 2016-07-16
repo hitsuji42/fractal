@@ -15,7 +15,7 @@ def initialize_image(x_p, y_p):
     return image
 
 
-def man():
+def mandelbrot():
     x_p = 400
     y_p = 400
     image = initialize_image(x_p+1, y_p+1)
@@ -40,4 +40,4 @@ def man():
     plt.show()
 
 if __name__ == '__main__':
-    man()
+    mandelbrot()
