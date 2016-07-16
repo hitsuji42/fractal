@@ -39,5 +39,31 @@ def mandelbrot():
     plt.colorbar()
     plt.show()
 
+
+def man(x0=0, y0=0, xp=400, yp=400, xc=0, yc=0, xr=2, yr=2, ma=1000):
+    x_p = xp
+    y_p = yp
+    image = initialize_image(x_p+1, y_p+1)
+    max_iteration = ma
+    for i in range(x_p+1):
+        if i % 10 == 0:
+            print(i)
+        for k in range(y_p+1):
+            x = 2*xr*i/x_p - xr + xc
+            y = 2*yr*k/y_p - yr + yc
+            z1 = x0 + y0 * 1j
+            c = x + y * 1j
+            iteration = 0
+            while (abs(z1) < 2) and (iteration < max_iteration):
+                z1 = z1*z1 + c
+                iteration += 1
+            else:
+                image[k][i] = iteration
+
+    plt.imshow(image, origin='lower', extent=(-xr+xc, xr+xc, -yr+yc, yr+yc),
+               cmap=cm.Greys_r, interpolation='nearest')
+    plt.colorbar()
+    plt.show()
+
 if __name__ == '__main__':
-    mandelbrot()
+    man(ma=16)
